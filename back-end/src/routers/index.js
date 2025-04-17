@@ -1,8 +1,8 @@
-const express= require('express');
+const express = require("express");
 
-const projectRouter=require('./project.js')
-const router =express.Router();
+const userRouter = require("./userRoute.js");
+const router = express.Router();
 
-router.use('/projects',projectRouter);
+router.use("/", userRouter);
 
-module.exports= router;
+module.exports = router;

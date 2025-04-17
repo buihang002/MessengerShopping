@@ -1,19 +1,24 @@
-const express=require('express');
-const {connect}= require('mongoose');
-const router=require('./src/routers/index.js');
-const dotenv= require('dotenv');
-const cors=require('cors');
+//bài nào cũng giống nhau
+const express = require("express");
+const { connect } = require("mongoose");
+const router = require("./src/routers/index.js");
+const dotenv = require("dotenv");
+var cors = require("cors");
+const bodyParser = require("body-parser");
 
-const app=express();
+const app = express();
+dotenv.config();
 app.use(cors());
 
-dotenv.config();
-const PORT=process.env.PORT;
-const MONGODB_URI=process.env.MONGODB_URI;
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
 connect(MONGODB_URI);
 
-app.use('/',router);
+// For parsing application/json
+//app.use(express.json());
+app.use(bodyParser.json());
+app.use("/", router);
 
-app.listen(PORT,()=>{
-    console.log(`server is running at http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`server is running at http://localhost:${PORT}`);
 });
